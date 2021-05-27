@@ -8,18 +8,26 @@
       <div class="col-md-6">
           <form class="form-inline">
               <div class="form-group">
-                  <label for="connect">WebSocket connection:</label>
-                  <button (click)="connect()" class="btn btn-default" type="submit">Connect</button>
-                  <button (click)="disconnect()" class="btn btn-default" type="submit" disabled="disabled">Disconnect
+                  <input type="text" [(ngModel)]="keyToConnect" name="key" class="form-control">
+                  <label>WebSocket connection:</label>
+                  <button *ngIf="keyToConnect !=null && !isConnected" (click)="connect()" class="btn btn-default" type="submit">Connect</button>
+                  <button (click)="disconnect()" *ngIf="isConnected" class="btn btn-default" type="submit" >Disconnect
                   </button>
+              </div>
+              <div class="form-group">
+                <label>Generer une clée:</label>
+                <button (click)="generateKey()" class="btn" type="submit">Generate</button>
+                <p *ngIf="key != null">{{key}}</p>
               </div>
           </form>
       </div>
       <div class="col-md-6">
-          <form class="form-inline">
+          <form class="form-inline" *ngIf="isConnected">
               <div class="form-group">
                   <label for="name">What is your name?</label>
                   <input type="text" [(ngModel)]="name" class="form-control" name="name"> <br>
+                  <label for="content">Content</label>
+                  <input type="text" [(ngModel)]="content" class="form-control" name="content"> <br>
               </div>
               <button (click)="sendMessage()" class="btn btn-default" type="submit">Send</button>
           </form>
