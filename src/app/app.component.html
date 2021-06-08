@@ -9,7 +9,7 @@
           <form class="form-inline">
               <div class="form-group">
                   <input type="text" [(ngModel)]="keyToConnect" name="key" class="form-control">
-                  <label>WebSocket connection:</label>
+                  <label>WebSocket connection :</label>
                   <button *ngIf="keyToConnect !=null && !isConnected" (click)="connect()" class="btn btn-default" type="submit">Connect</button>
                   <button (click)="disconnect()" *ngIf="isConnected" class="btn btn-default" type="submit" >Disconnect
                   </button>
